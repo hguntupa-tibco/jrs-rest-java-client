@@ -9,7 +9,7 @@ import com.jaspersoft.jasperserver.jaxrs.client.core.operationresult.OperationRe
 import com.jaspersoft.jasperserver.jaxrs.client.dto.reports.inputcontrols.InputControlStateListWrapper;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedHashMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -50,18 +50,6 @@ public class InputControlsValuesAdapter extends AbstractAdapter {
         return this;
     }
 
-    @Deprecated
-    public InputControlsValuesAdapter parameter(String name, String value) {
-        this.inputControlsValues.add(name, value);
-        return this;
-    }
-
-    @Deprecated
-    public InputControlsValuesAdapter parameter(String name, String... values) {
-        this.inputControlsValues.addAll(name, values);
-        return this;
-    }
-
     public InputControlsValuesAdapter forInputControl(String name) {
         this.inputControlsValues.add(name, null);
         return this;
@@ -80,17 +68,6 @@ public class InputControlsValuesAdapter extends AbstractAdapter {
     public InputControlsPaginationValuesAdapter pagination() {
         ids.append(StringUtils.join(inputControlsValues.keySet(), ";"));
         return new InputControlsPaginationValuesAdapter(sessionStorage, containerUri, ids.toString());
-    }
-
-    @Deprecated
-    public OperationResult<InputControlStateListWrapper> run() {
-        if (inputControlsValues.size() == 0) {
-            throw new MandatoryParameterNotFoundException();
-        }
-        if (!includeFullStructure) {
-            ids.append(StringUtils.join(inputControlsValues.keySet(), ";"));
-        }
-        return buildRequest().post(valuesToArrays());
     }
 
     public OperationResult<InputControlStateListWrapper> update(MultivaluedHashMap<String, String> inputControlsValues) {

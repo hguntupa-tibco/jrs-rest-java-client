@@ -30,7 +30,7 @@ import com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 import org.glassfish.jersey.media.multipart.file.StreamDataBodyPart;
 
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MediaType;
 import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -43,21 +43,6 @@ public class ReportUnitResourceBuilder extends ReportUnitResourceOperationProces
     public ReportUnitResourceBuilder(ClientReportUnit reportUnit, SessionStorage sessionStorage) {
         super(reportUnit, sessionStorage);
     }
-
-    @Deprecated
-    public ReportUnitResourceBuilder withJrxml(InputStream jrxml, ClientFile jrxmlDescriptor) {
-        multipart.field("jrxml", jrxml, MediaType.APPLICATION_XML_TYPE);
-        super.reportUnit.setJrxml(jrxmlDescriptor);
-        return this;
-    }
-
-    @Deprecated
-    public ReportUnitResourceBuilder withJrxml(String jrxml, ClientFile jrxmlDescriptor) {
-        multipart.field("jrxml", jrxml, MediaType.APPLICATION_XML_TYPE);
-        super.reportUnit.setJrxml(jrxmlDescriptor);
-        return this;
-    }
-
 
     public ReportUnitResourceBuilder withJrxml(String jrxmlContent) {
         super.multipart.field("jrxml", jrxmlContent, new MediaType("application", "jrxml"));
@@ -73,44 +58,6 @@ public class ReportUnitResourceBuilder extends ReportUnitResourceOperationProces
     public ReportUnitResourceBuilder withJrxml(File jrxml) {
         FileDataBodyPart fileDataBodyPart = new FileDataBodyPart("jrxml", jrxml, new MediaType("application", "jrxml"));
         super.multipart.bodyPart(fileDataBodyPart);
-        return this;
-    }
-
-    @Deprecated
-    public ReportUnitResourceBuilder withNewFile(String content, String fileName, ClientFile fileDescriptor) {
-        multipart.field("files." + fileName, content, MediaType.TEXT_PLAIN_TYPE);
-        Map<String, ClientReferenceableFile> files = super.reportUnit.getFiles();
-        if (files != null) {
-            super.reportUnit.getFiles().put(fileName, fileDescriptor);
-        } else {
-            super.reportUnit.setFiles(new HashMap<String, ClientReferenceableFile>());
-            super.reportUnit.getFiles().put(fileName, fileDescriptor);
-        }
-        return this;
-    }
-
-    @Deprecated
-    public ReportUnitResourceBuilder withNewFile(InputStream content, String fileName, ClientFile fileDescriptor) {
-        multipart.field("files." + fileName, content, MediaType.TEXT_PLAIN_TYPE);
-        Map<String, ClientReferenceableFile> files = super.reportUnit.getFiles();
-        if (files != null) {
-            super.reportUnit.getFiles().put(fileName, fileDescriptor);
-        } else {
-            super.reportUnit.setFiles(new HashMap<String, ClientReferenceableFile>());
-            super.reportUnit.getFiles().put(fileName, fileDescriptor);
-        }
-        return this;
-    }
-
-    @Deprecated
-    public ReportUnitResourceBuilder withNewFileReference(String fileName, ClientReference fileDescriptor) {
-        Map<String, ClientReferenceableFile> files = super.reportUnit.getFiles();
-        if (files != null) {
-            super.reportUnit.getFiles().put(fileName, fileDescriptor);
-        } else {
-            super.reportUnit.setFiles(new HashMap<String, ClientReferenceableFile>());
-            super.reportUnit.getFiles().put(fileName, fileDescriptor);
-        }
         return this;
     }
 

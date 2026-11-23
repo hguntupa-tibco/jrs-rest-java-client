@@ -31,7 +31,8 @@ import com.jaspersoft.jasperserver.jaxrs.client.core.ThreadPoolUtil;
 import com.jaspersoft.jasperserver.jaxrs.client.core.UrlUtils;
 import com.jaspersoft.jasperserver.jaxrs.client.core.exceptions.handling.DefaultErrorHandler;
 import com.jaspersoft.jasperserver.jaxrs.client.core.operationresult.OperationResult;
-import javax.ws.rs.core.MultivaluedHashMap;
+
+import jakarta.ws.rs.core.MultivaluedHashMap;
 
 
 public class SingleOrganizationAdapter extends AbstractAdapter {
@@ -144,14 +145,4 @@ public class SingleOrganizationAdapter extends AbstractAdapter {
         );
     }
 
-    /**
-     * @deprecated Replaced by {@link SingleOrganizationAdapter#create()}.
-     */
-    @Deprecated
-    public OperationResult<ClientTenant> create(ClientTenant clientTenant) {
-        JerseyRequest<ClientTenant> request = request();
-        return params.size() != 0
-                ? request.addParams(params).post(clientTenant)
-                : request.post(clientTenant);
-    }
 }

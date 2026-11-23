@@ -35,9 +35,9 @@ import com.jaspersoft.jasperserver.jaxrs.client.core.operationresult.OperationRe
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedMap;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
@@ -81,42 +81,6 @@ public class ImportRequestAdapter extends AbstractAdapter {
 
     public ImportRequestAdapter parameter(ImportParameter parameter, BrokenDependenciesParameter value) {
         params.add(useMultiPart ? parameter.getMultiPartParamName() : parameter.getParamName(), value.getValueName());
-        return this;
-    }
-
-    /**
-     * @Deprecated use setters {@link com.jaspersoft.jasperserver.dto.importexport.ImportTask}
-     */
-    @Deprecated
-    public ImportRequestAdapter parameter(String parameter) {
-        importTask.getParameters().add(parameter);
-        return this;
-    }
-
-    /**
-     * @Deprecated use setters {@link com.jaspersoft.jasperserver.dto.importexport.ImportTask}
-     */
-    @Deprecated
-    public ImportRequestAdapter parameters(List<String> parameters) {
-        importTask.getParameters().addAll(parameters);
-        return this;
-    }
-
-    /**
-     * @Deprecated use setters {@link com.jaspersoft.jasperserver.dto.importexport.ImportTask}
-     */
-    @Deprecated
-    public ImportRequestAdapter organization(String organizationId) {
-        importTask.setOrganization(organizationId);
-        return this;
-    }
-
-    /**
-     * @Deprecated use setters {@link com.jaspersoft.jasperserver.dto.importexport.ImportTask}
-     */
-    @Deprecated
-    public ImportRequestAdapter brokenDependensies(BrokenDependenciesParameter parameter) {
-        importTask.setBrokenDependencies(parameter.getValueName());
         return this;
     }
 
@@ -179,14 +143,6 @@ public class ImportRequestAdapter extends AbstractAdapter {
 
     public OperationResult<ImportTask> restartTask(ImportTask task) {
         return buildTaskRequest().put(task);
-    }
-
-    /**
-     * @Deprecated use {@link #cancel()}
-     */
-    @Deprecated
-    public OperationResult cancelTask() {
-        return buildRequest(sessionStorage, Object.class, new String[]{IMPORT_SERVICE_URI, taskId}).delete();
     }
 
     public OperationResult cancel() {

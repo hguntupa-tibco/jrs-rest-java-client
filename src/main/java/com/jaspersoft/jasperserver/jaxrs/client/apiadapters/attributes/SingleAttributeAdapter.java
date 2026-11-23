@@ -31,6 +31,7 @@ import com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage;
 import com.jaspersoft.jasperserver.jaxrs.client.core.ThreadPoolUtil;
 import com.jaspersoft.jasperserver.jaxrs.client.core.exceptions.handling.DefaultErrorHandler;
 import com.jaspersoft.jasperserver.jaxrs.client.core.operationresult.OperationResult;
+
 import java.util.ArrayList;
 
 /**
@@ -130,9 +131,9 @@ public class SingleAttributeAdapter extends AbstractAdapter {
         return task;
     }
 
-    private JerseyRequest<HypermediaAttribute> buildRequest() {
+    protected JerseyRequest<HypermediaAttribute> buildRequest() {
 
-        String[] uri = path.toArray(new String[path.size()]);
+        String[] uri = path.toArray(new String[0]);
         JerseyRequest<HypermediaAttribute> request = JerseyRequest.buildRequest(sessionStorage,HypermediaAttribute.class,
                 uri, new DefaultErrorHandler());
         if (includePermissions) {

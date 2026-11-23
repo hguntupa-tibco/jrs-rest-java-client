@@ -21,20 +21,23 @@
 package com.jaspersoft.jasperserver.jaxrs.client.core;
 
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.adhoc.queryexecution.QueryExecutionService;
+import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.alerting.AlertsService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.attributes.AttributesService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.authority.organizations.OrganizationsService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.authority.roles.RolesService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.authority.users.UsersService;
-import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.connections.ConnectionsService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.context.ContextService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.context.domain.DomainContextService;
+import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.dashboard.DashboardsService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.datadiscovery.DataDiscoveryService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.diagnostic.DiagnosticService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.domain.DomainService;
+import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.favorites.FavoritesService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.importexport.exportservice.ExportService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.importexport.importservice.ImportService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.inputControls.InputControlsService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.jobs.JobsService;
+import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.license.LicenseService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.permissions.PermissionsService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.query.QueryExecutorService;
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.reporting.ReportingService;
@@ -42,13 +45,13 @@ import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.resources.ResourcesS
 import com.jaspersoft.jasperserver.jaxrs.client.apiadapters.thumbnails.ThumbnailsService;
 import com.jaspersoft.jasperserver.jaxrs.client.core.enums.AuthenticationType;
 import com.jaspersoft.jasperserver.jaxrs.client.core.exceptions.handling.DefaultErrorHandler;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.Response;
 
 
-
-public class Session extends AnonymousSession{
+public class Session extends AnonymousSession {
 
     public Session(SessionStorage sessionStorage) {
         super(sessionStorage);
@@ -115,10 +118,6 @@ public class Session extends AnonymousSession{
         return getService(DomainService.class);
     }
 
-    public QueryExecutorService queryExecutorService() {
-        return getService(QueryExecutorService.class);
-    }
-
     public ThumbnailsService thumbnailsService() {
         return getService(ThumbnailsService.class);
     }
@@ -127,21 +126,49 @@ public class Session extends AnonymousSession{
         return getService(AttributesService.class);
     }
 
-    public InputControlsService inputControlsService() {return getService(InputControlsService.class);}
+    public InputControlsService inputControlsService() {
+        return getService(InputControlsService.class);
+    }
 
-    public DiagnosticService diagnosticService() {return getService(DiagnosticService.class);}
+    public DiagnosticService diagnosticService() {
+        return getService(DiagnosticService.class);
+    }
 
-    /**
-     *
-     * @deprecated Replaced by {@link Session#contextService()}*/
-    public ConnectionsService connectionsService() {return getService(ConnectionsService.class);}
+    public ContextService contextService() {
+        return getService(ContextService.class);
+    }
 
-    public ContextService contextService() {return getService(ContextService.class);}
+    public DomainContextService domainContextService() {
+        return getService(DomainContextService.class);
+    }
 
-    public DomainContextService domainContextService() {return getService(DomainContextService.class);}
+    public QueryExecutionService queryExecutionService() {
+        return getService(QueryExecutionService.class);
+    }
 
-    public QueryExecutionService queryExecutionService() {return getService(QueryExecutionService.class);}
+    public DataDiscoveryService dataDiscoveryService() {
+        return getService(DataDiscoveryService.class);
+    }
 
-    public DataDiscoveryService dataDiscoveryService() {return getService(DataDiscoveryService.class);}
+    public QueryExecutorService queryExecutorService() {
+        return getService(QueryExecutorService.class);
+    }
+
+    public FavoritesService favoritesService() {
+        return getService(FavoritesService.class);
+    }
+
+    public AlertsService alertsService() {
+        return getService(AlertsService.class);
+    }
+
+
+    public DashboardsService dashboardsService() {
+        return getService(DashboardsService.class);
+    }
+
+    public LicenseService licenseService() {
+        return getService(LicenseService.class);
+    }
 
 }

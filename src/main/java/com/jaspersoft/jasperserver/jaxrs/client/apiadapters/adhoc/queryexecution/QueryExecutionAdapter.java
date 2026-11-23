@@ -12,11 +12,11 @@ import com.jaspersoft.jasperserver.jaxrs.client.core.exceptions.handling.Default
 import com.jaspersoft.jasperserver.jaxrs.client.core.operationresult.OperationResult;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedHashMap;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
  * <p/>
@@ -113,16 +113,6 @@ public class QueryExecutionAdapter extends AbstractAdapter {
 
         request.setAccept(StringUtils.join(acceptType, ","));
         return request.get();
-    }
-
-    /**
-     * @deprecated Replaced by {@link QueryExecutionAdapter#delete()}
-     */
-    @Deprecated
-    public <T> OperationResult<T> deleteExecution(String executionId) {
-        uri.add(executionId);
-        JerseyRequest<T> request = buildRequest(responseClass);
-        return request.delete();
     }
 
     public OperationResult delete() {

@@ -27,7 +27,7 @@ import com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage;
 import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
 import org.glassfish.jersey.media.multipart.file.StreamDataBodyPart;
 
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MediaType;
 import java.io.File;
 import java.io.InputStream;
 
@@ -37,25 +37,6 @@ import java.io.InputStream;
 public class MondrianConnectionResourceBuilder extends MondrianConnectionResourceOperationProcessorDecorator {
     public MondrianConnectionResourceBuilder(ClientMondrianConnection entity, SessionStorage storage) {
         super(storage, entity);
-    }
-
-    @Deprecated
-    public MondrianConnectionResourceBuilder withMondrianSchema(InputStream schema, ClientFile schemaRef) {
-        multipart.field("schema", schema, new MediaType("application", "olapMondrianSchema+xml"));
-        super.connection.setSchema(schemaRef);
-        return this;
-    }
-
-    @Deprecated
-    public MondrianConnectionResourceBuilder withMondrianSchema(InputStream schema) {
-        multipart.field("schema", schema, new MediaType("application", "olapMondrianSchema+xml"));
-        return this;
-    }
-
-    @Deprecated
-    public MondrianConnectionResourceBuilder withUri(String uri) {
-        super.connection.setUri(uri);
-        return this;
     }
 
     public MondrianConnectionResourceBuilder withMondrianSchema(InputStream schema, String label) {

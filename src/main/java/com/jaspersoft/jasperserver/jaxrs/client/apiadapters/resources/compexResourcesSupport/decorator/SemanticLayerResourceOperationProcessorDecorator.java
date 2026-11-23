@@ -29,9 +29,9 @@ import com.jaspersoft.jasperserver.jaxrs.client.core.UrlUtils;
 import com.jaspersoft.jasperserver.jaxrs.client.core.operationresult.OperationResult;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedMap;
 
 /**
  * @author Alexander Krasnyanskiy
@@ -70,11 +70,6 @@ public class SemanticLayerResourceOperationProcessorDecorator {
             throw new WrongResourceFormatException("Can't find uri!");
         }
         return processor.get(domain.getUri());
-    }
-
-    @Deprecated
-    public OperationResult<ClientSemanticLayerDataSource> createInFolder(String path) {
-        return processor.create(multipart, new MediaType("application", "repository.semanticLayerDataSource+json"), path, params);
     }
 
     public SemanticLayerResourceOperationProcessorDecorator inFolder(String path) {

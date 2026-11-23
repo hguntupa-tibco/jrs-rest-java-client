@@ -28,9 +28,9 @@ import com.jaspersoft.jasperserver.jaxrs.client.core.UrlUtils;
 import com.jaspersoft.jasperserver.jaxrs.client.core.operationresult.OperationResult;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedMap;
 
 /**
  * @author Alexander Krasnyanskiy
@@ -62,12 +62,6 @@ public class SecureMondrianConnectionResourceOperationProcessorDecorator {
         this.multipart = new FormDataMultiPart();
         this.connection = connection;
     }
-
-    @Deprecated
-    public OperationResult<ClientSecureMondrianConnection> createInFolder(String path) {
-        return processor.create(multipart, new MediaType("application", "repository.secureMondrianConnection+xml"), path, params);
-    }
-
 
     public SecureMondrianConnectionResourceOperationProcessorDecorator inFolder(String parentFolder) {
         this.path = parentFolder;
